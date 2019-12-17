@@ -45,13 +45,13 @@ proto = {
 
 class Decoder(srd.Decoder):
     api_version = 3
-    id = 'SLE44xx'
+    id = 'sle44xx'
     name = 'SLE 44xx'
     longname = 'SLE44xx protocol'
     desc = 'SLE 4418/28/32/42 memory card serial protocol'
     license = 'gplv2+'
     inputs = ['logic']
-    outputs = ['SLE44xx']
+    outputs = ['sle44xx']
     channels = (
         {'id': 'rst', 'name': 'RST', 'desc': 'Reset line'},
         {'id': 'clk', 'name': 'CLK', 'desc': 'Clock line'},
@@ -91,8 +91,6 @@ class Decoder(srd.Decoder):
         self.out_python = self.register(srd.OUTPUT_PYTHON)
         self.out_ann = self.register(srd.OUTPUT_ANN)
         self.out_binary = self.register(srd.OUTPUT_BINARY)
-        self.out_bitrate = self.register(srd.OUTPUT_META,
-                meta=(int, 'Bitrate', 'Bitrate from Start bit to Stop bit'))
 
     def putx(self, data):
         self.put(self.ss, self.es, self.out_ann, data)
